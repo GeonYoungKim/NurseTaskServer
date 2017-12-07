@@ -22,7 +22,7 @@ public class PhotoController {
 	private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
 		
 	
-    @RequestMapping(value = "/photo", method = RequestMethod.POST)
+    @RequestMapping(value = "/photo")
     public void uploadImageCtlr(ModelMap model,
                                   HttpServletRequest request,
                                   @RequestParam(value = "photo") MultipartFile file) throws UnsupportedEncodingException{

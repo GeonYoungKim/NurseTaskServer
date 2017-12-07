@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-
+@Configuration
 @ComponentScan("di.gunyoung.*")
 public class AppConfig {
     @Bean

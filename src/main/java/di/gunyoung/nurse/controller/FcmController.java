@@ -45,6 +45,7 @@ public class FcmController {
 		System.out.println(action);
 		String[] tokens=to_token.split(",");
 		
+		
 		// 1. fcm 서버정보 세팅
 		String fcm_url = "https://fcm.googleapis.com/fcm/send";
 		String content_type = "application/json";
