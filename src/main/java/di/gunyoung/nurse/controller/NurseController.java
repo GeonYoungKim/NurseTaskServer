@@ -218,7 +218,7 @@ public class NurseController {
 	public void today_schedule_show(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("today_schedule_show");		
-		String nurseid=request.getParameter("nurseid");			
+		String nurseid=request.getParameter("id");			
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurse_by_id(nurseid)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());	
