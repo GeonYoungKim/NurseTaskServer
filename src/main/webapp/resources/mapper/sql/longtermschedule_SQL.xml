@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LongTermSchedule">
+	
+	<insert id="insertLongTermSchedule" parameterType="model.LongTermScheduleVO">
+		<![CDATA[
+			INSERT INTO gunyoung.long_term_schedule (scheduleid, startday, content, endday, longnurseid) VALUES (#{scheduleid},#{startday},#{content},#{endday},#{longnurseid});
+		]]>
+	</insert>
+	<select id="get_long_term_schedule_list_by_id" parameterType="String"  resultType="model.LongTermScheduleVO">
+		<![CDATA[
+			SELECT * FROM gunyoung.long_term_schedule where longnurseid=#{longnurseid} order by startday;
+		]]>
+	</select>
+	
+</mapper>

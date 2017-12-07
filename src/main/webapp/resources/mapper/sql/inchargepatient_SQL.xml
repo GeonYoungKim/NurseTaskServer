@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="InChargePatient">
+	<insert id="insertInChargePatient" parameterType="model.InChargePatientVO">
+		<![CDATA[
+		
+			INSERT 
+				INTO 
+					inchargepatient (nurseid,patientcode)
+				VALUES(
+					#{nurseid},
+					#{patientcode}
+					)
+		]]>
+	</insert>
+	<delete id="deleteInChargePatient" parameterType="String">
+		<![CDATA[
+			DELETE 
+				FROM gunyoung.inchargepatient where nurseid=#{nurseid};
+		]]>
+	</delete>
+	<select id="getInChargePatientList" parameterType="String"  resultType="model.PatientVO">
+		<![CDATA[
+			select * from patient where patientcode in (select patientcode from inchargepatient where nurseid=#{nurseid});
+		]]>
+	</select>
+
+	
+</mapper>

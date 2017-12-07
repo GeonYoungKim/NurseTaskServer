@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Chat">
+	<select id="getChatList" parameterType="model.ChatVO" resultType="model.ChatVO">
+		<![CDATA[
+		SELECT 
+			*
+		FROM
+			gunyoung.chat
+		WHERE
+			roomno=#{roomno};
+		]]>
+	</select>
+	<insert id="insertChat" parameterType="model.ChatVO">
+		<![CDATA[
+			INSERT
+				INTO gunyoung.chat (
+					roomno,
+					chatcontent,
+					nurseid2,
+					chatno
+				)
+				VALUES(
+					#{roomno},
+					#{chatcontent},
+					#{nurseid2},
+					#{chatno}
+				)
+		]]>
+	</insert>
+	<update id="update_chat_room" parameterType="Integer">
+		<![CDATA[
+			UPDATE
+				chat 
+			SET
+				roomno=0 
+			WHERE
+				roomno=#{roomno}
+		]]>
+	</update> 
+	<update id="update_chat_room2" parameterType="model.SwapRoomVO">
+		<![CDATA[
+			UPDATE 
+				chat 
+			SET 
+				roomno=#{roomno1} 
+			WHERE 
+				roomno=#{roomno2}
+		]]>
+	</update> 
+
+	
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Patient">
+	<select id="getRoomPatientList" parameterType="String" resultType="model.PatientVO">
+		<![CDATA[
+			SELECT * FROM gunyoung.patient where room like #{room}
+		]]>
+	</select>
+	<select id="getPatientList" resultType="model.PatientVO">
+		<![CDATA[
+			SELECT * FROM patient
+		]]>
+	</select>
+	<insert id="insertPatient" parameterType="model.PatientVO">
+		<![CDATA[
+			insert into patient (patientcode,name,birth,sex,disease,period,note,room,image) values(#{patientcode},#{name},#{birth},#{sex},#{disease},#{period},#{note},#{room},#{image})
+		]]>
+	</insert>
+	<select id="getPatient" parameterType="model.PatientVO"  resultType="model.PatientVO">
+		<![CDATA[
+			SELECT * FROM patient WHERE patientcode=#{patientcode}
+		]]>
+	</select>
+	<update id="updatePatient" parameterType="model.PatientVO">
+		<![CDATA[
+			update patient set name=#{name},birth=#{birth},sex=#{sex},disease=#{disease},period=#{period},note=#{note},room=#{room} where patientcode=#{patientcode}
+		]]>
+	</update>	
+	<delete id="deletePatient" parameterType="String">
+		<![CDATA[
+			delete from patient where patientcode=#{patientcode};
+		]]>
+	</delete>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NurseRoom">
+	<insert id="insertNurseRoom" parameterType="model.NurseRoomVO">
+		<![CDATA[
+			insert into nurseroom (nurseid,roomnum,token) values(#{nurseid},#{roomnum},#{token})
+		]]>
+	</insert>
+	<delete id="deleteNurseRoom" parameterType="String">
+		<![CDATA[
+			delete from gunyoung.nurseroom where roomnum=#{roomnum};
+		]]>
+	</delete>
+	<select id="getNurseRoomList" parameterType="String" resultType="model.NurseRoomVO">
+		<![CDATA[
+			SELECT * FROM gunyoung.nurseroom where roomnum=#{roomnum};
+		]]>
+	</select>
+	<update id="updateNurseRoomToken" parameterType="model.NurseVO">
+		<![CDATA[
+			UPDATE gunyoung.nurseroom SET token=#{token} WHERE nurseid=#{nurseid}
+		]]>
+	</update> 
+	<update id="updateNurseRoomNo" parameterType="model.SwapRoomVO">
+		<![CDATA[
+			UPDATE gunyoung.nurseroom SET roomnum=#{roomno1} WHERE roomnum=#{roomno2}
+		]]>
+	</update> 
+	<select id="getNurseRoombyflag" parameterType="model.UpdateNurseRoomFlagVO" resultType="Integer">
+		<![CDATA[
+			SELECT n.flag FROM gunyoung.nurseroom n,gunyoung.room r where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+		]]>
+	</select>
+	<update id="updateFlag" parameterType="model.UpdateNurseRoomFlagVO">
+		<![CDATA[
+			update gunyoung.nurseroom n,gunyoung.room r set n.flag=#{flag} where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+		]]>
+	</update> 
+	<update id="updateFlag2" parameterType="model.UpdateNurseRoomFlagVO">
+		<![CDATA[
+			update gunyoung.nurseroom n,gunyoung.room r set n.flag=0 where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+		]]>
+	</update> 
+
+	
+</mapper>
