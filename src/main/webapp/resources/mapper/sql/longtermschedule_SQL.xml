@@ -13,5 +13,4 @@
 			SELECT * FROM gunyoung.long_term_schedule where longnurseid=#{longnurseid} order by startday;
 		]]>
 	</select>
-	
 </mapper>

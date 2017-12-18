@@ -218,7 +218,7 @@ public class NurseController {
 	public void today_schedule_show(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("today_schedule_show");		
-		String nurseid=request.getParameter("id");			
+		String nurseid=request.getParameter("nurseid");			
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurse_by_id(nurseid)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());	
@@ -269,8 +269,7 @@ public class NurseController {
 		updateNurseRoomFlagVO.setRoomnum(Integer.parseInt(roomno));
 		int flag=nurseService.getNurseRoombyflag(updateNurseRoomFlagVO);
 		updateNurseRoomFlagVO.setFlag(flag+1);
-		nurseService.updateFlag(updateNurseRoomFlagVO);			
-		
+		nurseService.updateFlag(updateNurseRoomFlagVO);				
 	}
 	@RequestMapping("/getRoomFlag2")
 	public void getRoomFlag2(HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -285,6 +284,5 @@ public class NurseController {
 		if(flag>=1) {
 			nurseService.updateFlag2(updateNurseRoomFlagVO);
 		}
-	}
-	
+	}	
 }
