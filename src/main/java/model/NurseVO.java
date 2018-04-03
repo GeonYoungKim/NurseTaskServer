@@ -3,29 +3,20 @@ package model;
 
 
 public class NurseVO {
-	private String nurseid;
+	private String nurseId;
 	private String password;
 	private String name;
 	private String birth;
 	private String phone;
 	private String address;
 	private String image;
-	private String todayschedule;
+	private String todaySchedule;
 	private String token;
-	
-	
-	
-	public String getToken() {
-		return token;
+	public String getNurseId() {
+		return nurseId;
 	}
-	public void setToken(String token) {
-		this.token = token;
-	}
-	public String getNurseid() {
-		return nurseid;
-	}
-	public void setNurseid(String nurseid) {
-		this.nurseid = nurseid;
+	public void setNurseId(String nurseId) {
+		this.nurseId = nurseId;
 	}
 	public String getPassword() {
 		return password;
@@ -63,24 +54,21 @@ public class NurseVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getTodayschedule() {
-		return todayschedule;
+	public String getTodaySchedule() {
+		return todaySchedule;
 	}
-	public void setTodayschedule(String todayschedule) {
-		this.todayschedule = todayschedule;
+	public void setTodaySchedule(String todaySchedule) {
+		this.todaySchedule = todaySchedule;
 	}
-	@Override
-	public String toString() {
-		return "NurseVO [nurseid=" + nurseid + ", password=" + password + ", name=" + name + ", birth=" + birth
-				+ ", phone=" + phone + ", address=" + address + ", image=" + image + ", todayschedule=" + todayschedule
-				+ "]";
+	public String getToken() {
+		return token;
 	}
-
+	public void setToken(String token) {
+		this.token = token;
+	}
 	
 	
 	
-		
-		
 	
 	
 }

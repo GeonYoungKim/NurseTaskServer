@@ -1,33 +1,29 @@
 package model;
 
 public class NurseRoomVO {
-	private String nurseid;
-    private int roomnum;
+	private String nurseId;
+    private int roomNum;
     private String token;
-    
-
-    public String getToken() {
+	public String getNurseId() {
+		return nurseId;
+	}
+	public void setNurseId(String nurseId) {
+		this.nurseId = nurseId;
+	}
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+	public String getToken() {
 		return token;
 	}
-
 	public void setToken(String token) {
 		this.token = token;
 	}
+    
 
-	public String getNurseid() {
-        return nurseid;
-    }
-
-    public void setNurseid(String nurseid) {
-        this.nurseid = nurseid;
-    }
-
-    public int getRoomnum() {
-        return roomnum;
-    }
-
-    public void setRoomnum(int roomnum) {
-        this.roomnum = roomnum;
-    }
+    
 
 }

@@ -1,35 +1,34 @@
 package model;
 
 public class ChatVO {
-	private int roomno;
-	private String nurseid2;
-    private int chatno;
-    private String chatcontent;
-	public int getRoomno() {
-		return roomno;
+	private int roomNo;
+	private String nurseId2;
+    private int chatNo;
+    private String chatContent;
+	public int getRoomNo() {
+		return roomNo;
 	}
-	public void setRoomno(int roomno) {
-		this.roomno = roomno;
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
 	}
-	public String getNurseid2() {
-		return nurseid2;
+	public String getNurseId2() {
+		return nurseId2;
 	}
-	public void setNurseid2(String nurseid2) {
-		this.nurseid2 = nurseid2;
+	public void setNurseId2(String nurseId2) {
+		this.nurseId2 = nurseId2;
 	}
-	public int getChatno() {
-		return chatno;
+	public int getChatNo() {
+		return chatNo;
 	}
-	public void setChatno(int chatno) {
-		this.chatno = chatno;
+	public void setChatNo(int chatNo) {
+		this.chatNo = chatNo;
 	}
-	public String getChatcontent() {
-		return chatcontent;
+	public String getChatContent() {
+		return chatContent;
 	}
-	public void setChatcontent(String chatcontent) {
-		this.chatcontent = chatcontent;
+	public void setChatContent(String chatContent) {
+		this.chatContent = chatContent;
 	}
-
+	
     
-
 }

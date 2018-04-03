@@ -35,7 +35,7 @@ public class AdminDAO extends ConnectDB{
 	public void insertInChargePatient(InChargePatientVO inChargePatientVO) {
 		insert("InChargePatient.insertInChargePatient",inChargePatientVO);
 	}
-	public void update_nurse_today_schedule(NurseVO nurseVO) {
+	public void updateNurseTodaySchedule(NurseVO nurseVO) {
 		update("Nurse.update_today_schedule",nurseVO);
 	}
 	public void insertLongTermSchedule(LongTermScheduleVO longTermScheduleVO) {

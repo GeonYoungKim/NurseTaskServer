@@ -43,15 +43,15 @@ public class AdminService {
 		String[] inchargepatient=patientcodes.split("-");
 		InChargePatientVO inChargePatientVO=new InChargePatientVO();
 		for(String str:inchargepatient) {
-			inChargePatientVO.setNurseid(nurseid);
-			inChargePatientVO.setPatientcode(str);
+			inChargePatientVO.setNurseId(nurseid);
+			inChargePatientVO.setPatientCode(str);
 			adminDAO.insertInChargePatient(inChargePatientVO);
 		}
 		
 	}
 	
-	public void update_nurse_today_schedule(NurseVO nurseVO) {
-		adminDAO.update_nurse_today_schedule(nurseVO);
+	public void updateNurseTodaySchedule(NurseVO nurseVO) {
+		adminDAO.updateNurseTodaySchedule(nurseVO);
 	}
 	public void insertLongTermSchedule(LongTermScheduleVO longTermScheduleVO) {
 		adminDAO.insertLongTermSchedule(longTermScheduleVO);

@@ -4,28 +4,28 @@
 <mapper namespace="Room">
 	<insert id="insertRoom" parameterType="model.RoomVO">
 		<![CDATA[
-			insert into room (roomno,roomname,count) values(#{roomno},#{roomname},#{count})
+			insert into room (roomno,roomname,count) values(#{roomNo},#{roomName},#{count})
 		]]>
 	</insert>
 	<select id="getRoom" parameterType="model.RoomVO"  resultType="model.RoomVO">
 		<![CDATA[
-			SELECT * FROM room WHERE roomname=#{roomname} and count=#{count}
+			SELECT * FROM room WHERE roomname=#{roomName} and count=#{count}
 		]]>
 	</select>
 	<select id="getRoomList" parameterType="String" resultType="model.RoomVO">
 		<![CDATA[
-			select r.roomno,r.roomname,r.count,n.flag from gunyoung.room r, gunyoung.nurseroom n where r.roomno=n.roomnum and n.nurseid=#{nurseid} order by n.flag desc;
+			select r.roomno,r.roomname,r.count,n.flag from gunyoung.room r, gunyoung.nurseroom n where r.roomno=n.roomnum and n.nurseid=#{nurseId} order by n.flag desc;
 		]]>
 	
 	</select>
 	<select id="getRoom2" parameterType="Integer"  resultType="model.RoomVO">
 		<![CDATA[
-			SELECT * FROM room WHERE roomno=#{roomno}
+			SELECT * FROM room WHERE roomno=#{roomNo}
 		]]>
 	</select>
 	<update id="updateRoom" parameterType="model.RoomVO">
 		<![CDATA[
-			update gunyoung.room set roomname=#{roomname},count=#{count} where roomno=#{roomno};
+			update gunyoung.room set roomname=#{roomName},count=#{count} where roomno=#{roomNo};
 		]]>
 	</update>
 	<select id="firstRoom" resultType="model.RoomVO">
@@ -35,7 +35,7 @@
 	</select>
 	<update id="updateRoomNo" parameterType="model.SwapRoomVO">
 		<![CDATA[
-			UPDATE gunyoung.room SET roomno=#{roomno1} WHERE roomno=#{roomno2}
+			UPDATE gunyoung.room SET roomno=#{roomNo1} WHERE roomno=#{roomNo2}
 		]]>
 	</update> 
 	 

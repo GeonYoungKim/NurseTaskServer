@@ -5,12 +5,12 @@
 	
 	<insert id="insertLongTermSchedule" parameterType="model.LongTermScheduleVO">
 		<![CDATA[
-			INSERT INTO gunyoung.long_term_schedule (scheduleid, startday, content, endday, longnurseid) VALUES (#{scheduleid},#{startday},#{content},#{endday},#{longnurseid});
+			INSERT INTO gunyoung.long_term_schedule (scheduleid, startday, content, endday, longnurseid) VALUES (#{scheduleId},#{startDay},#{content},#{endDay},#{longNurseId});
 		]]>
 	</insert>
 	<select id="get_long_term_schedule_list_by_id" parameterType="String"  resultType="model.LongTermScheduleVO">
 		<![CDATA[
-			SELECT * FROM gunyoung.long_term_schedule where longnurseid=#{longnurseid} order by startday;
+			SELECT * FROM gunyoung.long_term_schedule where longnurseid=#{longNurseId} order by startday;
 		]]>
 	</select>
 </mapper>

@@ -1,24 +1,22 @@
 package model;
 
 public class InChargePatientVO {
-	private String nurseid;
-	private String patientcode;
-	public String getNurseid() {
-		return nurseid;
+	private String nurseId;
+	private String patientCode;
+	public String getNurseId() {
+		return nurseId;
 	}
-	public void setNurseid(String nurseid) {
-		this.nurseid = nurseid;
+	public void setNurseId(String nurseId) {
+		this.nurseId = nurseId;
 	}
-	public String getPatientcode() {
-		return patientcode;
+	public String getPatientCode() {
+		return patientCode;
 	}
-	public void setPatientcode(String patientcode) {
-		this.patientcode = patientcode;
+	public void setPatientCode(String patientCode) {
+		this.patientCode = patientCode;
 	}
-	@Override
-	public String toString() {
-		return "InChargePatientVO [nurseid=" + nurseid + ", patientcode=" + patientcode + "]";
-	}
+	
+	
 	
 
 }

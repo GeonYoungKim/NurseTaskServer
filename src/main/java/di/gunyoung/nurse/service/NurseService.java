@@ -40,24 +40,24 @@ public class NurseService {
 	public void insertRoom(RoomVO roomVO) {
 		nurseDAO.insertRoom(roomVO);	
 	}
-	public NurseVO getNurse_by_id(String nurseid) {
-		return nurseDAO.getNurse_by_id(nurseid);
+	public NurseVO getNurseById(String nurseid) {
+		return nurseDAO.getNurseById(nurseid);
 		
 	}
 	public RoomVO inserChatRoom(String roomname,int count,String data1,String data2) {
 		RoomVO roomVo=new RoomVO();
 		roomVo.setCount(count);
-		roomVo.setRoomname(roomname);
+		roomVo.setRoomName(roomname);
 		insertRoom(roomVo);
-		NurseVO nurseVO=getNurse_by_id(data1);
+		NurseVO nurseVO=getNurseById(data1);
 		roomVo=getRoom(roomVo);
 		NurseRoomVO nurseRoomVO=new NurseRoomVO();	
-		nurseRoomVO.setNurseid(data1);
-		nurseRoomVO.setRoomnum(roomVo.getRoomno());
+		nurseRoomVO.setNurseId(data1);
+		nurseRoomVO.setRoomNum(roomVo.getRoomNo());
 		nurseRoomVO.setToken(nurseVO.getToken());
 		insertNurseRoom(nurseRoomVO);
-		NurseVO nurseVO2=getNurse_by_id(data2);
-		nurseRoomVO.setNurseid(data2);
+		NurseVO nurseVO2=getNurseById(data2);
+		nurseRoomVO.setNurseId(data2);
 		nurseRoomVO.setToken(nurseVO2.getToken());
 		insertNurseRoom(nurseRoomVO);
 		return getRoom(roomVo);
@@ -91,10 +91,10 @@ public class NurseService {
 	public void updateNurseRoom(String strNurseId,int roomno) {
 		String[] roomsId=strNurseId.split(",");
 		NurseRoomVO nurseRoomVO=new NurseRoomVO();
-		nurseRoomVO.setRoomnum(roomno);
+		nurseRoomVO.setRoomNum(roomno);
 		for(int i=0;i<roomsId.length;i++) {
-			nurseRoomVO.setNurseid(roomsId[i]);
-			nurseRoomVO.setToken(getNurse_by_id(roomsId[i]).getToken());
+			nurseRoomVO.setNurseId(roomsId[i]);
+			nurseRoomVO.setToken(getNurseById(roomsId[i]).getToken());
 			insertNurseRoom(nurseRoomVO);
 		}
 	}
@@ -104,8 +104,8 @@ public class NurseService {
 	public List<PatientVO> getInChargePatientList(String nurseid){
 		return nurseDAO.getInChargePatientList(nurseid);
 	}
-	public List<LongTermScheduleVO> get_long_term_schedule_list_by_id(String longnurseid){
-		return nurseDAO.get_long_term_schedule_list_by_id(longnurseid);
+	public List<LongTermScheduleVO> getLongTermScheduleListById(String longnurseid){
+		return nurseDAO.getLongTermScheduleListById(longnurseid);
 	}
 	public void updateToken(NurseVO nurseVO) {
 		nurseDAO.updateToken(nurseVO);
@@ -114,7 +114,7 @@ public class NurseService {
 		nurseDAO.updateNurseRoomToken(nurseVO);
 	}
 	public int getNurseRoombyflag(UpdateNurseRoomFlagVO updateNurseRoomFlagVO) {
-		return nurseDAO.getNurseRoombyflag(updateNurseRoomFlagVO);
+		return nurseDAO.getNurseRoomByFlag(updateNurseRoomFlagVO);
 	}
 	public void updateFlag(UpdateNurseRoomFlagVO updateNurseRoomFlagVO) {
 		nurseDAO.updateFlag(updateNurseRoomFlagVO);

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.JsonObject;
+
 import di.gunyoung.nurse.service.NurseService;
 import model.ChatVO;
 import model.CheckRoomVO;
@@ -26,16 +29,16 @@ public class NurseController {
 	public void login(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		NurseVO nurseVO=new NurseVO();		
-		String nurseid=request.getParameter("id");
+		String nurseId=request.getParameter("id");
 		String password=request.getParameter("password");
-		nurseVO.setNurseid(nurseid);
+		nurseVO.setNurseId(nurseId);
 		nurseVO.setPassword(password);
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurse(nurseVO)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
 	}
 
-	@RequestMapping("/roomPatientList")
+	@RequestMapping("/room-patient-list")
 	public void roomPatientList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("roomPatientList");
@@ -45,14 +48,15 @@ public class NurseController {
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getRoomPatientList(room)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
+		
 		System.out.println(jsonObject.toString());
 	}
-	@RequestMapping("/insertNurse")
+	@RequestMapping("/insert-nurse")
 	public void insertNurse(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertNurse");
 		NurseVO nurseVO=new NurseVO();
-		String nurseid=request.getParameter("id");
+		String nurseId=request.getParameter("id");
 		String password=request.getParameter("password");
 		String name=request.getParameter("name");
 		String birth=request.getParameter("birth");
@@ -61,14 +65,14 @@ public class NurseController {
 		String image=request.getParameter("image");
 		
 		
-		nurseVO.setNurseid(nurseid);
+		nurseVO.setNurseId(nurseId);
 		nurseVO.setPassword(password);
 		nurseVO.setName(name);
 		nurseVO.setBirth(birth);
 		nurseVO.setPhone(phone);
 		nurseVO.setAddress(address);
 		nurseVO.setImage(image);
-		nurseVO.setTodayschedule("Not yet schedule");
+		nurseVO.setTodaySchedule("Not yet schedule");
 		nurseVO.setToken("0");
 		
 		nurseService.insertNurse(nurseVO);
@@ -78,22 +82,22 @@ public class NurseController {
 		response.getWriter().print(jsonObject.toString()); 			
 	
 	}
-	@RequestMapping("/nurseList")
+	@RequestMapping("/nurse-list")
 	public void nurseList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("nurselist");
+		System.out.println("nurseList");
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurseList()));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 	
 	}
-	@RequestMapping("/inserChatRoom")
+	@RequestMapping("/insert-chat-room")
 	public void inserChatRoom(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("inserChatRoom");
 		request.setCharacterEncoding("UTF-8");
 		
-		String roomname=request.getParameter("roomname");
-		System.out.println(roomname);
+		String roomName=request.getParameter("roomName");
+		System.out.println(roomName);
 		
 		int count=Integer.parseInt(request.getParameter("count"));
 		System.out.println(count);
@@ -109,7 +113,7 @@ public class NurseController {
 		checkRoomVO.setData2(data2);
 		roomVO=nurseService.getCheckRoom(checkRoomVO);
 		if(roomVO==null){
-			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.inserChatRoom(roomname,count,data1,data2)));
+			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.inserChatRoom(roomName,count,data1,data2)));
 			response.setContentType("application/json; charset=utf-8"); 	
 			response.getWriter().print(jsonObject.toString());
 		}else {
@@ -120,41 +124,41 @@ public class NurseController {
 		
 		}
 	}
-	@RequestMapping("/roomList")
+	@RequestMapping("/room-list")
 	public void roomList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("roomList");
-		String nurseid=request.getParameter("nurseid");
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getRoomList(nurseid)));
+		String nurseId=request.getParameter("nurseId");
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getRoomList(nurseId)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
 		
 	
 	}
-	@RequestMapping("/chatList")
+	@RequestMapping("/chat-list")
 	public void chatList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("chatList");
 		ChatVO chatVO=new ChatVO();
-		String roomno=request.getParameter("roomno");
-		chatVO.setRoomno(Integer.parseInt(roomno));
+		String roomNo=request.getParameter("roomNo");
+		chatVO.setRoomNo(Integer.parseInt(roomNo));
 		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getChatList(chatVO)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
 	
 	}
-	@RequestMapping("/insertChat")
+	@RequestMapping("/insert-chat")
 	public void insertChat(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertChat");
-		String roomno=request.getParameter("roomno");
-		String chatcontent=request.getParameter("chatcontent");
-		String nurseid2=request.getParameter("nurseid2");
+		String roomNo=request.getParameter("roomNo");
+		String chatContent=request.getParameter("chatContent");
+		String nurseId2=request.getParameter("nurseId2");
 		ChatVO chatVO=new ChatVO();
 		
-		chatVO.setChatcontent(chatcontent);
-		chatVO.setNurseid2(nurseid2);
-		chatVO.setRoomno(Integer.parseInt(roomno));
+		chatVO.setChatContent(chatContent);
+		chatVO.setNurseId2(nurseId2);
+		chatVO.setRoomNo(Integer.parseInt(roomNo));
 		
 		nurseService.insertChat(chatVO);
 	}
@@ -162,127 +166,139 @@ public class NurseController {
 	public void getRoom2(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("getRoom2");
-		String roomno=request.getParameter("roomno");
+		String roomNo=request.getParameter("roomNo");
 		
 		
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getRoom2(Integer.parseInt(roomno))));
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getRoom2(Integer.parseInt(roomNo))));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());
 	
 	}
-	@RequestMapping("/updateRoom")
+	@RequestMapping("/update-room")
 	public void updateRoom(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("updateRoom");
-		String roomname=request.getParameter("roomname");
-		String roomno=request.getParameter("roomno");
+		String roomName=request.getParameter("roomName");
+		String roomNo=request.getParameter("roomNo");
 		String count=request.getParameter("count");
 		String strNurseId=request.getParameter("strNurseId");
 		
 		RoomVO roomVO=new RoomVO();
 		
-		roomVO.setRoomno(Integer.parseInt(roomno));
-		roomVO.setRoomname(roomname);
+		roomVO.setRoomNo(Integer.parseInt(roomNo));
+		roomVO.setRoomName(roomName);
 		roomVO.setCount(Integer.parseInt(count));
 		
 		nurseService.updateRoom(roomVO);
-		nurseService.deleteNurseRoom(roomno);
+		nurseService.deleteNurseRoom(roomNo);
 		
-		nurseService.updateNurseRoom(strNurseId,Integer.parseInt(roomno));
+		nurseService.updateNurseRoom(strNurseId,Integer.parseInt(roomNo));
 		
 		
 	}
-	@RequestMapping("/getNurseRoom")
+	@RequestMapping("/get-nurse-room")
 	public void getNurseRoom(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("getNurseRoom");		
-		String roomno=request.getParameter("roomno");
+		String roomNo=request.getParameter("roomNo");
 		
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurseRoomList(roomno)));
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurseRoomList(roomNo)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());			
 	
 	}
-	@RequestMapping("/incharge_patient_show")
+	@RequestMapping("/incharge-patient-show")
 	public void incharge_patient_show(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("incharge_patient_show");
-		String nurseid=request.getParameter("nurseid");		
+		String nurseId=request.getParameter("nurseId");		
 		
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getInChargePatientList(nurseid)));
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getInChargePatientList(nurseId)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());		
 	
 	}
-	@RequestMapping("/today_schedule_show")
+	@RequestMapping("/today-schedule-show")
 	public void today_schedule_show(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("today_schedule_show");		
-		String nurseid=request.getParameter("nurseid");			
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurse_by_id(nurseid)));
+		String nurseId=request.getParameter("nurseId");			
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getNurseById(nurseId)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());	
 	}
-	@RequestMapping("/long_term_schedule_show")
+	@RequestMapping("/long-term-schedule-show")
 	public void long_term_schedule_show(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("long_term_scheduleshow");
-		String longnurseid=request.getParameter("nurseid");
-		System.out.println(longnurseid);
-		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.get_long_term_schedule_list_by_id(longnurseid)));
+		String longNurseId=request.getParameter("nurseId");
+		System.out.println(longNurseId);
+		JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(nurseService.getLongTermScheduleListById(longNurseId)));
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());				
 	}
-	@RequestMapping("/update_token")
+	@RequestMapping("/update-token")
 	public void update_token(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("update_token");
-		String nurseid=request.getParameter("nurseid");
+		String nurseId=request.getParameter("nurseId");
 		String token=request.getParameter("token");
 		
 		NurseVO nurseVO=new NurseVO();
-		nurseVO.setNurseid(nurseid);
+		nurseVO.setNurseId(nurseId);
 		nurseVO.setToken(token);
 		
 		nurseService.updateToken(nurseVO);
 	}
-	@RequestMapping("/update_nurseroom_token")
+	@RequestMapping("/update-nurseroom-token")
 	public void update_nurseroom_token(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("update_nurseroom_token");
-		String nurseid=request.getParameter("nurseid");
+		String nurseId=request.getParameter("nurseId");
 		String token=request.getParameter("token");
 		
 		NurseVO nurseVO=new NurseVO();
-		nurseVO.setNurseid(nurseid);
+		nurseVO.setNurseId(nurseId);
 		nurseVO.setToken(token);
 		nurseService.updateNurseRoomToken(nurseVO);
 	}
-	@RequestMapping("/getRoomFlag")
+	@RequestMapping("/get-room-flag")
 	public void getRoomFlag(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("getRoomFlag");
-		String nurseid=request.getParameter("nurseid");
-		String roomno=request.getParameter("roomno");
+		String nurseId=request.getParameter("nurseId");
+		String roomNo=request.getParameter("roomNo");
 		UpdateNurseRoomFlagVO updateNurseRoomFlagVO=new UpdateNurseRoomFlagVO();
-		updateNurseRoomFlagVO.setNurseid(nurseid);
-		updateNurseRoomFlagVO.setRoomnum(Integer.parseInt(roomno));
+		updateNurseRoomFlagVO.setNurseId(nurseId);
+		updateNurseRoomFlagVO.setRoomNum(Integer.parseInt(roomNo));
 		int flag=nurseService.getNurseRoombyflag(updateNurseRoomFlagVO);
 		updateNurseRoomFlagVO.setFlag(flag+1);
 		nurseService.updateFlag(updateNurseRoomFlagVO);				
 	}
-	@RequestMapping("/getRoomFlag2")
+	@RequestMapping("/get-room-flag2")
 	public void getRoomFlag2(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("getRoomFlag2");
-		String nurseid=request.getParameter("nurseid");
-		String roomno=request.getParameter("roomno");
+		String nurseId=request.getParameter("nurseId");
+		String roomNo=request.getParameter("roomNo");
 		UpdateNurseRoomFlagVO updateNurseRoomFlagVO=new UpdateNurseRoomFlagVO();
-		updateNurseRoomFlagVO.setNurseid(nurseid);
-		updateNurseRoomFlagVO.setRoomnum(Integer.parseInt(roomno));
+		updateNurseRoomFlagVO.setNurseId(nurseId);
+		updateNurseRoomFlagVO.setRoomNum(Integer.parseInt(roomNo));
 		int flag=nurseService.getNurseRoombyflag(updateNurseRoomFlagVO);
 		if(flag>=1) {
 			nurseService.updateFlag2(updateNurseRoomFlagVO);
 		}
 	}	
+	@RequestMapping("/andtest")
+	public void andtest(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println("andtest");
+		JsonObject jsonObject=new JsonObject();
+		
+		jsonObject.addProperty("a", "kim");
+		jsonObject.addProperty("b", "gun");
+		jsonObject.addProperty("c", "young");
+		System.out.println(jsonObject.toString());
+		response.setContentType("application/json; charset=utf-8"); 	
+		response.getWriter().print(jsonObject.toString()); 		
+	}
 }

@@ -9,20 +9,20 @@
 				INTO 
 					inchargepatient (nurseid,patientcode)
 				VALUES(
-					#{nurseid},
-					#{patientcode}
+					#{nurseId},
+					#{patientCode}
 					)
 		]]>
 	</insert>
 	<delete id="deleteInChargePatient" parameterType="String">
 		<![CDATA[
 			DELETE 
-				FROM gunyoung.inchargepatient where nurseid=#{nurseid};
+				FROM gunyoung.inchargepatient where nurseid=#{nurseId};
 		]]>
 	</delete>
 	<select id="getInChargePatientList" parameterType="String"  resultType="model.PatientVO">
 		<![CDATA[
-			select * from patient where patientcode in (select patientcode from inchargepatient where nurseid=#{nurseid});
+			select * from patient where patientcode in (select patientcode from inchargepatient where nurseid=#{nurseId});
 		]]>
 	</select>
 

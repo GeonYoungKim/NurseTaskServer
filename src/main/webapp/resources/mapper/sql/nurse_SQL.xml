@@ -5,12 +5,12 @@
 	
 	<select id="getNurse" parameterType="model.NurseVO"  resultType="model.NurseVO">		
 		<![CDATA[
-			SELECT * FROM nurse WHERE nurseid=#{nurseid} and password=#{password}
+			SELECT * FROM nurse WHERE nurseid=#{nurseId} and password=#{password}
 		]]>
 	</select>
 	<insert id="insertNurse" parameterType="model.NurseVO">
 		<![CDATA[
-			insert into nurse (nurseid,password,name,birth,phone,address,image,todayschedule,token) values(#{nurseid},#{password},#{name},#{birth},#{phone},#{address},#{image},#{todayschedule},#{token})
+			insert into nurse (nurseid,password,name,birth,phone,address,image,todayschedule,token) values(#{nurseId},#{password},#{name},#{birth},#{phone},#{address},#{image},#{todaySchedule},#{token})
 		]]>
 	</insert>
 	<select id="getNurseList" resultType="model.NurseVO">
@@ -20,22 +20,22 @@
 	</select>
 	<update id="insertPatientcode" parameterType="model.NurseVO">
 		<![CDATA[
-			UPDATE nurse SET patientcode=#{patientcode} WHERE nurseid=#{nurseid}
+			UPDATE nurse SET patientcode=#{patientCode} WHERE nurseid=#{nurseId}
 		]]>
 	</update> 
 	<update id="update_today_schedule" parameterType="model.NurseVO">
 		<![CDATA[
-			update nurse set todayschedule=#{todayschedule} where nurseid=#{nurseid}
+			update nurse set todayschedule=#{todaySchedule} where nurseid=#{nurseId}
 		]]>
 	</update> 
 	<select id="getNurse_by_id" parameterType="String"  resultType="model.NurseVO">
 		<![CDATA[
-			SELECT * FROM nurse WHERE nurseid=#{nurseid}
+			SELECT * FROM nurse WHERE nurseid=#{nurseId}
 		]]>
 	</select>
 	<update id="updateToken" parameterType="model.NurseVO">
 		<![CDATA[
-			UPDATE nurse SET token=#{token} WHERE nurseid=#{nurseid}
+			UPDATE nurse SET token=#{token} WHERE nurseid=#{nurseId}
 		]]>
 	</update> 
 	

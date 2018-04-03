@@ -1,7 +1,7 @@
 package model;
 
 public class PatientVO {
-	private String patientcode;
+	private String patientCode;
 	private String name;
 	private String birth;
 	private String sex;
@@ -10,19 +10,11 @@ public class PatientVO {
 	private String note;
 	private String room;
 	private String image;
-	
-		
-	public String getImage() {
-		return image;
+	public String getPatientCode() {
+		return patientCode;
 	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public String getPatientcode() {
-		return patientcode;
-	}
-	public void setPatientcode(String patientcode) {
-		this.patientcode = patientcode;
+	public void setPatientCode(String patientCode) {
+		this.patientCode = patientCode;
 	}
 	public String getName() {
 		return name;
@@ -66,13 +58,13 @@ public class PatientVO {
 	public void setRoom(String room) {
 		this.room = room;
 	}
-	@Override
-	public String toString() {
-		return "PatientVO [patientcode=" + patientcode + ", name=" + name + ", birth=" + birth + ", sex=" + sex
-				+ ", disease=" + disease + ", period=" + period + ", note=" + note + ", room=" + room + "]";
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	
 	
-
 }

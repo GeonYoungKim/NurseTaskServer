@@ -1,20 +1,21 @@
 package model;
 
 public class UpdateNurseRoomFlagVO {
-	private String nurseid;
-    private int roomnum;
+	private String nurseId;
+    private int roomNum;
     private int flag;
-	public String getNurseid() {
-		return nurseid;
+    
+	public String getNurseId() {
+		return nurseId;
 	}
-	public void setNurseid(String nurseid) {
-		this.nurseid = nurseid;
+	public void setNurseId(String nurseId) {
+		this.nurseId = nurseId;
 	}
-	public int getRoomnum() {
-		return roomnum;
+	public int getRoomNum() {
+		return roomNum;
 	}
-	public void setRoomnum(int roomnum) {
-		this.roomnum = roomnum;
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
 	}
 	public int getFlag() {
 		return flag;

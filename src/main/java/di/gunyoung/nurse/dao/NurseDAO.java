@@ -37,7 +37,7 @@ public class NurseDAO extends ConnectDB{
 	public void insertRoom(RoomVO roomVO) {
 		insert("Room.insertRoom",roomVO);	
 	}
-	public NurseVO getNurse_by_id(String nurseid) {
+	public NurseVO getNurseById(String nurseid) {
 		return (NurseVO)selectOne("Nurse.getNurse_by_id",nurseid);		
 	}
 	public RoomVO getRoom(RoomVO roomVO) {
@@ -71,7 +71,7 @@ public class NurseDAO extends ConnectDB{
 	public List<PatientVO> getInChargePatientList(String nurseid){
 		return (List<PatientVO>)selectList("InChargePatient.getInChargePatientList",nurseid);
 	}
-	public List<LongTermScheduleVO> get_long_term_schedule_list_by_id(String longnurseid){
+	public List<LongTermScheduleVO> getLongTermScheduleListById(String longnurseid){
 		return (List<LongTermScheduleVO>)selectList("LongTermSchedule.get_long_term_schedule_list_by_id",longnurseid);
 	}
 	public void updateToken(NurseVO nurseVO) {
@@ -80,7 +80,7 @@ public class NurseDAO extends ConnectDB{
 	public void updateNurseRoomToken(NurseVO nurseVO) {
 		update("NurseRoom.updateNurseRoomToken",nurseVO);
 	}
-	public int getNurseRoombyflag(UpdateNurseRoomFlagVO updateNurseRoomFlagVO) {
+	public int getNurseRoomByFlag(UpdateNurseRoomFlagVO updateNurseRoomFlagVO) {
 		return (int)selectOne("NurseRoom.getNurseRoombyflag",updateNurseRoomFlagVO);
 	}
 	public void updateFlag(UpdateNurseRoomFlagVO updateNurseRoomFlagVO) {

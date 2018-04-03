@@ -9,7 +9,7 @@
 		FROM
 			gunyoung.chat
 		WHERE
-			roomno=#{roomno};
+			roomno=#{roomNo};
 		]]>
 	</select>
 	<insert id="insertChat" parameterType="model.ChatVO">
@@ -22,10 +22,10 @@
 					chatno
 				)
 				VALUES(
-					#{roomno},
-					#{chatcontent},
-					#{nurseid2},
-					#{chatno}
+					#{roomNo},
+					#{chatContent},
+					#{nurseId2},
+					#{chatNo}
 				)
 		]]>
 	</insert>
@@ -44,9 +44,9 @@
 			UPDATE 
 				chat 
 			SET 
-				roomno=#{roomno1} 
+				roomno=#{roomNo1} 
 			WHERE 
-				roomno=#{roomno2}
+				roomno=#{roomNo2}
 		]]>
 	</update> 
 

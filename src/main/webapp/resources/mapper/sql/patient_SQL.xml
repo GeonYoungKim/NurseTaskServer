@@ -14,22 +14,22 @@
 	</select>
 	<insert id="insertPatient" parameterType="model.PatientVO">
 		<![CDATA[
-			insert into patient (patientcode,name,birth,sex,disease,period,note,room,image) values(#{patientcode},#{name},#{birth},#{sex},#{disease},#{period},#{note},#{room},#{image})
+			insert into patient (patientcode,name,birth,sex,disease,period,note,room,image) values(#{patientCode},#{name},#{birth},#{sex},#{disease},#{period},#{note},#{room},#{image})
 		]]>
 	</insert>
 	<select id="getPatient" parameterType="model.PatientVO"  resultType="model.PatientVO">
 		<![CDATA[
-			SELECT * FROM patient WHERE patientcode=#{patientcode}
+			SELECT * FROM patient WHERE patientcode=#{patientCode}
 		]]>
 	</select>
 	<update id="updatePatient" parameterType="model.PatientVO">
 		<![CDATA[
-			update patient set name=#{name},birth=#{birth},sex=#{sex},disease=#{disease},period=#{period},note=#{note},room=#{room} where patientcode=#{patientcode}
+			update patient set name=#{name},birth=#{birth},sex=#{sex},disease=#{disease},period=#{period},note=#{note},room=#{room} where patientcode=#{patientCode}
 		]]>
 	</update>	
 	<delete id="deletePatient" parameterType="String">
 		<![CDATA[
-			delete from patient where patientcode=#{patientcode};
+			delete from patient where patientcode=#{patientCode};
 		]]>
 	</delete>
 </mapper>

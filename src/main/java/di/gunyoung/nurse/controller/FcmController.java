@@ -47,9 +47,9 @@ public class FcmController {
 		
 		
 		// 1. fcm 서버정보 세팅
-		String fcm_url = "https://fcm.googleapis.com/fcm/send";
-		String content_type = "application/json";
-		String server_key = "AAAAnIkxDv0:APA91bEMNlEPRKSkU1X4KFF7ziPNbphtbUjx6S6s8pK4cF-6usLrDe7YXk7OAGB3jvNeK3VVCH_iPkHMCwkS2JnYRZBKzeMuh1uIG_5aEadzKUb2HFOFiqqT_IDxgCGObdrCeaEQI2HT";
+		String fcmUrl = "https://fcm.googleapis.com/fcm/send";
+		String contentType = "application/json";
+		String serverKey = "AAAAnIkxDv0:APA91bEMNlEPRKSkU1X4KFF7ziPNbphtbUjx6S6s8pK4cF-6usLrDe7YXk7OAGB3jvNeK3VVCH_iPkHMCwkS2JnYRZBKzeMuh1uIG_5aEadzKUb2HFOFiqqT_IDxgCGObdrCeaEQI2HT";
 
 		// 2. 메시지정보를 클라이언트(핸드폰)로 부터 수신
 		// 위의 함수에 정의된 파라미터에서 값을 받게 된다.
@@ -78,12 +78,12 @@ public class FcmController {
 			try{
 				// 3.2 HttpUrlConnection 을 사용해서 FCM서버측으로 메시지를 전송한다
 					//a.서버연결
-				URL url = new URL(fcm_url);
+				URL url = new URL(fcmUrl);
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 					//b.header 설정
 				con.setRequestMethod("POST");
-				con.setRequestProperty("Authorization","key="+server_key);
-				con.setRequestProperty("Content-Type",content_type);
+				con.setRequestProperty("Authorization","key="+serverKey);
+				con.setRequestProperty("Content-Type",contentType);
 					//c.POST데이터(body) 전송
 				con.setDoOutput(true);
 				OutputStreamWriter os = new OutputStreamWriter(con.getOutputStream(),"UTF-8");

@@ -1,30 +1,28 @@
 package model;
 
 public class LongTermScheduleVO {
-	private int scheduleid;
-	private String startday;
-	private String endday;
+	private int scheduleId;
+	private String startDay;
+	private String endDay;
 	private String content;
-	private String longnurseid;
-	
-	
-	public int getScheduleid() {
-		return scheduleid;
+	private String longNurseId;
+	public int getScheduleId() {
+		return scheduleId;
 	}
-	public void setScheduleid(int scheduleid) {
-		this.scheduleid = scheduleid;
+	public void setScheduleId(int scheduleId) {
+		this.scheduleId = scheduleId;
 	}
-	public String getStartday() {
-		return startday;
+	public String getStartDay() {
+		return startDay;
 	}
-	public void setStartday(String startday) {
-		this.startday = startday;
+	public void setStartDay(String startDay) {
+		this.startDay = startDay;
 	}
-	public String getEndday() {
-		return endday;
+	public String getEndDay() {
+		return endDay;
 	}
-	public void setEndday(String endday) {
-		this.endday = endday;
+	public void setEndDay(String endDay) {
+		this.endDay = endDay;
 	}
 	public String getContent() {
 		return content;
@@ -32,11 +30,15 @@ public class LongTermScheduleVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getLongnurseid() {
-		return longnurseid;
+	public String getLongNurseId() {
+		return longNurseId;
 	}
-	public void setLongnurseid(String longnurseid) {
-		this.longnurseid = longnurseid;
+	public void setLongNurseId(String longNurseId) {
+		this.longNurseId = longNurseId;
 	}
+	
+	
+	
+	
 
 }

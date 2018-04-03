@@ -23,7 +23,7 @@ public class AdminController {
 	@Resource(name="AdminService")
 	private AdminService adminService;
 	
-	@RequestMapping("/patientList")
+	@RequestMapping("/patient-list")
 	public void nurseList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("patientList");
@@ -31,12 +31,12 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
 	}
-	@RequestMapping("/insertPatient")
+	@RequestMapping("/insert-patient")
 	public void insertPatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertPatient");
 		PatientVO patientVO=new PatientVO();
-		String patientcode=request.getParameter("patientcode");
+		String patientCode=request.getParameter("patientCode");
 		String name=request.getParameter("name");
 		String birth=request.getParameter("birth");
 		String sex=request.getParameter("sex");
@@ -46,7 +46,7 @@ public class AdminController {
 		String room=request.getParameter("room");
 		String image=request.getParameter("image");
 		
-		patientVO.setPatientcode(patientcode);
+		patientVO.setPatientCode(patientCode);
 		patientVO.setName(name);
 		patientVO.setBirth(birth);
 		patientVO.setSex(sex);
@@ -61,12 +61,12 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 		
 	}
-	@RequestMapping("/updatePatient")
+	@RequestMapping("/update-patient")
 	public void updatePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("updatePatient");
 		PatientVO patientVO=new PatientVO();
-		String patientcode=request.getParameter("patientcode");
+		String patientCode=request.getParameter("patientCode");
 		String name=request.getParameter("name");
 		String birth=request.getParameter("birth");
 		String sex=request.getParameter("sex");
@@ -76,7 +76,7 @@ public class AdminController {
 		String room=request.getParameter("room");
 		
 		
-		patientVO.setPatientcode(patientcode);
+		patientVO.setPatientCode(patientCode);
 		patientVO.setName(name);
 		patientVO.setBirth(birth);
 		patientVO.setSex(sex);
@@ -91,54 +91,54 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());
 	}
-	@RequestMapping("/deletePatient")
+	@RequestMapping("/delete-patient")
 	public void deletePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("deletePatient");
-		String patientcode=request.getParameter("patientcode");
-		adminService.deletePatient(patientcode);
+		String patientCode=request.getParameter("patientCode");
+		adminService.deletePatient(patientCode);
 	
 	}
-	@RequestMapping("/insertInChargePatient")
+	@RequestMapping("/insert-incharge-patient")
 	public void insertInChargePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertInChargePatient");		
 		String nurseId=request.getParameter("nurseId");
-		String patientcodes=request.getParameter("patientcode");
+		String patientCode=request.getParameter("patientcode");
 		System.out.println(nurseId);
-		System.out.println(patientcodes);			
+		System.out.println(patientCode);			
 		
 		adminService.deleteInChargePatient(nurseId);
-		adminService.insertInChargePatient(nurseId,patientcodes);
+		adminService.insertInChargePatient(nurseId,patientCode);
 	
 	}
-	@RequestMapping("/today_schedule_update")
+	@RequestMapping("/today-schedule-update")
 	public void today_schedule_update(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("today_schedule_update");
-		String today_schedule_result=request.getParameter("today_schedule_result");
-		String nurseid=request.getParameter("nurseid");
+		String todayScheduleResult=request.getParameter("todayScheduleResult");
+		String nurseId=request.getParameter("nurseId");
 		
 		NurseVO nurseVO=new NurseVO();
-		nurseVO.setNurseid(nurseid);
-		nurseVO.setTodayschedule(today_schedule_result);
+		nurseVO.setNurseId(nurseId);
+		nurseVO.setTodaySchedule(todayScheduleResult);
 		
-		adminService.update_nurse_today_schedule(nurseVO);
+		adminService.updateNurseTodaySchedule(nurseVO);
 	}
 	@RequestMapping("/long_term_schedule_insert")
 	public void long_term_schedule_insert(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("long_term_schedule_insert");
-		String startday=request.getParameter("startday");
-		String endday=request.getParameter("endday");
+		String startDay=request.getParameter("startDay");
+		String endDay=request.getParameter("endDay");
 		String content=request.getParameter("content");
-		String nurseid=request.getParameter("nurseid");
+		String nurseId=request.getParameter("nurseId");
 		
 		LongTermScheduleVO longTermScheduleVO=new LongTermScheduleVO();
 		longTermScheduleVO.setContent(content);
-		longTermScheduleVO.setEndday(endday);
-		longTermScheduleVO.setStartday(startday);
-		longTermScheduleVO.setLongnurseid(nurseid);
+		longTermScheduleVO.setEndDay(endDay);
+		longTermScheduleVO.setStartDay(startDay);
+		longTermScheduleVO.setLongNurseId(nurseId);
 		
 		adminService.insertLongTermSchedule(longTermScheduleVO);
 		

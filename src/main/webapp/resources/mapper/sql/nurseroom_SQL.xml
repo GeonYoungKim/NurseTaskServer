@@ -4,7 +4,7 @@
 <mapper namespace="NurseRoom">
 	<insert id="insertNurseRoom" parameterType="model.NurseRoomVO">
 		<![CDATA[
-			insert into nurseroom (nurseid,roomnum,token) values(#{nurseid},#{roomnum},#{token})
+			insert into nurseroom (nurseid,roomnum,token) values(#{nurseId},#{roomNum},#{token})
 		]]>
 	</insert>
 	<delete id="deleteNurseRoom" parameterType="String">
@@ -19,27 +19,27 @@
 	</select>
 	<update id="updateNurseRoomToken" parameterType="model.NurseVO">
 		<![CDATA[
-			UPDATE gunyoung.nurseroom SET token=#{token} WHERE nurseid=#{nurseid}
+			UPDATE gunyoung.nurseroom SET token=#{token} WHERE nurseid=#{nurseId}
 		]]>
 	</update> 
 	<update id="updateNurseRoomNo" parameterType="model.SwapRoomVO">
 		<![CDATA[
-			UPDATE gunyoung.nurseroom SET roomnum=#{roomno1} WHERE roomnum=#{roomno2}
+			UPDATE gunyoung.nurseroom SET roomnum=#{roomNo1} WHERE roomnum=#{roomNo2}
 		]]>
 	</update> 
 	<select id="getNurseRoombyflag" parameterType="model.UpdateNurseRoomFlagVO" resultType="Integer">
 		<![CDATA[
-			SELECT n.flag FROM gunyoung.nurseroom n,gunyoung.room r where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+			SELECT n.flag FROM gunyoung.nurseroom n,gunyoung.room r where n.nurseid=#{nurseId} and n.roomnum=#{roomNum} and n.roomnum=r.roomno;
 		]]>
 	</select>
 	<update id="updateFlag" parameterType="model.UpdateNurseRoomFlagVO">
 		<![CDATA[
-			update gunyoung.nurseroom n,gunyoung.room r set n.flag=#{flag} where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+			update gunyoung.nurseroom n,gunyoung.room r set n.flag=#{flag} where n.nurseid=#{nurseId} and n.roomnum=#{roomNum} and n.roomnum=r.roomno;
 		]]>
 	</update> 
 	<update id="updateFlag2" parameterType="model.UpdateNurseRoomFlagVO">
 		<![CDATA[
-			update gunyoung.nurseroom n,gunyoung.room r set n.flag=0 where n.nurseid=#{nurseid} and n.roomnum=#{roomnum} and n.roomnum=r.roomno;
+			update gunyoung.nurseroom n,gunyoung.room r set n.flag=0 where n.nurseid=#{nurseId} and n.roomnum=#{roomNum} and n.roomnum=r.roomno;
 		]]>
 	</update> 
 
