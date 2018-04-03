@@ -104,7 +104,7 @@ public class AdminController {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertInChargePatient");		
 		String nurseId=request.getParameter("nurseId");
-		String patientCode=request.getParameter("patientcode");
+		String patientCode=request.getParameter("patientCode");
 		System.out.println(nurseId);
 		System.out.println(patientCode);			
 		
@@ -125,7 +125,7 @@ public class AdminController {
 		
 		adminService.updateNurseTodaySchedule(nurseVO);
 	}
-	@RequestMapping("/long_term_schedule_insert")
+	@RequestMapping("/long-term-schedule-insert")
 	public void long_term_schedule_insert(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("long_term_schedule_insert");
