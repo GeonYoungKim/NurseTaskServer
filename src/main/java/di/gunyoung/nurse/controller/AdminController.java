@@ -1,12 +1,16 @@
 package di.gunyoung.nurse.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +27,7 @@ public class AdminController {
 	@Resource(name="AdminService")
 	private AdminService adminService;
 	
-	@RequestMapping("/patient-list")
+	@GetMapping("/patient-list")
 	public void nurseList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("patientList");
@@ -31,20 +35,21 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 
 	}
-	@RequestMapping("/insert-patient")
-	public void insertPatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@PostMapping("/insert-patient")
+	public void insertPatient(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,Object> data) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertPatient");
 		PatientVO patientVO=new PatientVO();
-		String patientCode=request.getParameter("patientCode");
-		String name=request.getParameter("name");
-		String birth=request.getParameter("birth");
-		String sex=request.getParameter("sex");
-		String disease=request.getParameter("disease");
-		String period=request.getParameter("period");
-		String note=request.getParameter("note");
-		String room=request.getParameter("room");
-		String image=request.getParameter("image");
+		
+		String patientCode=data.get("patientCode").toString();
+		String name=data.get("name").toString();
+		String birth=data.get("birth").toString();
+		String sex=data.get("sex").toString();
+		String disease=data.get("disease").toString();
+		String period=data.get("period").toString();
+		String note=data.get("note").toString();
+		String room=data.get("room").toString();
+		String image=data.get("image").toString();
 		
 		patientVO.setPatientCode(patientCode);
 		patientVO.setName(name);
@@ -61,19 +66,19 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString()); 		
 	}
-	@RequestMapping("/update-patient")
-	public void updatePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@PostMapping("/update-patient")
+	public void updatePatient(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,Object> data) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("updatePatient");
 		PatientVO patientVO=new PatientVO();
-		String patientCode=request.getParameter("patientCode");
-		String name=request.getParameter("name");
-		String birth=request.getParameter("birth");
-		String sex=request.getParameter("sex");
-		String disease=request.getParameter("disease");
-		String period=request.getParameter("period");
-		String note=request.getParameter("note");
-		String room=request.getParameter("room");
+		String patientCode=data.get("patientCode").toString();
+		String name=data.get("name").toString();
+		String birth=data.get("birth").toString();
+		String sex=data.get("sex").toString();
+		String disease=data.get("disease").toString();
+		String period=data.get("period").toString();
+		String note=data.get("note").toString();
+		String room=data.get("room").toString();
 		
 		
 		patientVO.setPatientCode(patientCode);
@@ -91,7 +96,7 @@ public class AdminController {
 		response.setContentType("application/json; charset=utf-8"); 	
 		response.getWriter().print(jsonObject.toString());
 	}
-	@RequestMapping("/delete-patient")
+	@PostMapping("/delete-patient")
 	public void deletePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("deletePatient");
@@ -99,12 +104,12 @@ public class AdminController {
 		adminService.deletePatient(patientCode);
 	
 	}
-	@RequestMapping("/insert-incharge-patient")
-	public void insertInChargePatient(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@PostMapping("/insert-incharge-patient")
+	public void insertInChargePatient(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,Object> data) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("insertInChargePatient");		
-		String nurseId=request.getParameter("nurseId");
-		String patientCode=request.getParameter("patientCode");
+		String nurseId=data.get("nurseId").toString();
+		String patientCode=data.get("patientCode").toString();
 		System.out.println(nurseId);
 		System.out.println(patientCode);			
 		
@@ -112,12 +117,12 @@ public class AdminController {
 		adminService.insertInChargePatient(nurseId,patientCode);
 	
 	}
-	@RequestMapping("/today-schedule-update")
-	public void today_schedule_update(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@PostMapping("/today-schedule-update")
+	public void today_schedule_update(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,Object> data) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("today_schedule_update");
-		String todayScheduleResult=request.getParameter("todayScheduleResult");
-		String nurseId=request.getParameter("nurseId");
+		String todayScheduleResult=data.get("todayScheduleResult").toString();request.getParameter("todayScheduleResult");
+		String nurseId=data.get("nurseId").toString();
 		
 		NurseVO nurseVO=new NurseVO();
 		nurseVO.setNurseId(nurseId);
@@ -125,14 +130,15 @@ public class AdminController {
 		
 		adminService.updateNurseTodaySchedule(nurseVO);
 	}
-	@RequestMapping("/long-term-schedule-insert")
-	public void long_term_schedule_insert(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	@PostMapping("/long-term-schedule-insert")
+	public void long_term_schedule_insert(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,Object> data) throws IOException{
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("long_term_schedule_insert");
-		String startDay=request.getParameter("startDay");
-		String endDay=request.getParameter("endDay");
-		String content=request.getParameter("content");
-		String nurseId=request.getParameter("nurseId");
+		
+		String startDay=data.get("startDay").toString();
+		String endDay=data.get("endDay").toString();
+		String content=data.get("content").toString();
+		String nurseId=data.get("nurseId").toString();
 		
 		LongTermScheduleVO longTermScheduleVO=new LongTermScheduleVO();
 		longTermScheduleVO.setContent(content);
